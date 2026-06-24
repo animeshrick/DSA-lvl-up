@@ -48,6 +48,26 @@ A review cap of **5 reviews per file** keeps the loop honest — after that, fix
 
 ## Progress so far
 
+### Progress dashboard *(from `DSA_Level1_Tracker.xlsx`)*
+
+```
+Level-1 completion   ▕█░░░░░░░░░░░░░░░░░░░▏    7%   ( 2 / 28 days cleared )
+Week 1 progress      ▕██████░░░░░░░░░░░░░░▏   29%   ( 2 / 7  days cleared )
+Days engaged         ▕██░░░░░░░░░░░░░░░░░░▏   11%   ( 3 / 28 started or done )
+Problems solved      ▕███░░░░░░░░░░░░░░░░░▏   18 logged so far
+```
+
+**Per-day scores**
+
+```
+Day 1  Complexity + I/O      ▕██████████████░░░░░░▏   71 / 100   Advanced
+Day 2  Number Theory I       ▕██████████████████░░▏   91 / 100   Level up ✅
+Day 3  Arrays + Hashing      ▕░░░░░░░░░░░░░░░░░░░░▏    — / 100    In progress 🔄
+```
+
+*A "cleared" day is one that passed its review (score ≥ 50). Bars are 20 cells wide;
+each filled block ≈ 5%.*
+
 | Day | Topic | Status | Score | Result |
 |---:|---|---|---:|---|
 | 1 | Time/Space Complexity + I/O warm-up | Advanced | 71 / 100 | Climbed 39 → 46 → 71 over three reviews |
