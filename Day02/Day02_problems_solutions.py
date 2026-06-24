@@ -22,75 +22,135 @@ Digit loop you must own today:
 # ----------------------------------------------------------------------
 # Q1 — Check prime.  Required complexity: O(sqrt(n)).
 #      n < 2 -> False.  Use  i*i <= n  (don't loop to n).
-def is_prime(n):
-    # your code here
-    pass
+def is_prime(n: int) -> bool:
+    if n <= 1:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
 
 
 # ----------------------------------------------------------------------
 # Q2 — All primes from 2..n (inclusive) as a list.  Reuse is_prime.
 def primes_upto(n):
-    # your code here
-    pass
+    prime_list = []
+    for i in range(2, n+1):
+        if is_prime(i) == True:
+            prime_list.append(i)
+    return prime_list
 
 
 # ----------------------------------------------------------------------
 # Q3 — Factorial, ITERATIVE (loop).  0! = 1, 1! = 1.
 def fact_iter(n):
-    # your code here
-    pass
+    fact = 1
+    for i in range(1, n+1):
+        fact = fact * i
+    return fact
 
 
 # ----------------------------------------------------------------------
 # Q4 — Factorial, RECURSIVE.  Find the base case first.
 def fact_rec(n):
-    # your code here
-    pass
+    if n == 0 or n == 1:
+        return 1
+    return n * fact_rec(n - 1)
 
 
 # ----------------------------------------------------------------------
 # Q5 — Count digits WITHOUT str()/len().  Only % and //.
 #      count_digits(0) must return 1.  Use abs() for negatives.
 def count_digits(n):
-    # your code here
-    pass
+    # sign = -1 if n < 0 else 1
+    n = abs(n)
+    count = 0
+    if n == 0:
+        count = 1
+    while n > 0:
+        n = n // 10
+        count += 1
+    return count
 
 
 # ----------------------------------------------------------------------
 # Q6 — Sum of digits of an INT (not a string).  sum_digits(-99) -> 18.
 def sum_digits(n):
-    # your code here
-    pass
+    n = abs(n)
+    total = 0
+    while n > 0:
+        digit = n % 10
+        total += digit
+        n = n // 10
+    return total
 
 
 # ----------------------------------------------------------------------
 # Q7 — Reverse a number with MATH (rev = rev*10 + n%10). No str[::-1].
 #      reverse_num(1200) -> 21 ;  reverse_num(-123) -> -321
 def reverse_num(n):
-    # your code here
-    pass
+    sign = -1 if n < 0 else 1
+    data = abs(n)
+    reverse_no = 0
+
+    while data > 0:
+        digit = data % 10
+        reverse_no = reverse_no * 10 + digit
+        data = data // 10
+
+    return reverse_no * sign
 
 
 # ----------------------------------------------------------------------
 # Q8 — Armstrong number (sum of digit**num_of_digits == n). Digit loop only.
 def is_armstrong(n):
-    # your code here
-    pass
+    if n < 0:
+        return False
+
+    original = n
+    temp = n
+    num_digits = 0
+
+    # Count digits
+    if temp == 0:
+        num_digits = 1
+    else:
+        while temp > 0:
+            num_digits += 1
+            temp //= 10
+
+    temp = n
+    total = 0
+
+    while temp > 0:
+        digit = temp % 10
+        total += digit ** num_digits
+        temp //= 10
+
+    return total == original
 
 
 # ----------------------------------------------------------------------
 # Q9 — Palindrome number. Reverse with math (reuse Q7 idea).
 #      Negatives -> False.
 def is_palindrome(n):
-    # your code here
-    pass
+    reverse_no = 0
+    actual_no = n
+
+    while n > 0:
+        digit = n % 10
+        reverse_no = reverse_no * 10 + digit
+        n = n // 10
+    # print(f"reverse_no --> {reverse_no}")
+    return True if actual_no == reverse_no else False
 
 
 # ----------------------------------------------------------------------
 # Q10 — Power of two (bit trick).  n > 0 and (n & (n-1)) == 0.
 def is_power_of_two(n):
-    # your code here
-    pass
+    if n <= 0:
+        return False
+    return n & (n-1) == 0
 
 
 # ----------------------------------------------------------------------
