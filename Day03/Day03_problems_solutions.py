@@ -12,68 +12,96 @@ LEVEL-UP RULES:
   - State TIME and SPACE complexity in a comment above EVERY function.
   - In-place where required (Q4, Q5, Q7) -> O(1) extra space.
   - Use a dict/set to reach O(n) on Q10-Q13. No nested loops there.
-  - hints only, no solutions from me until you ask. Reviews are blunt.
-
-Idioms you should use today:
-    a[i], a[j] = a[j], a[i]      # in-place swap, two pointers
-    d[k] = d.get(k, 0) + 1       # frequency count
-    seen = set()                 # O(1) membership
+  - Hints name the technique only — no formulas, no snippets. Derive the code yourself.
+  - Solutions only when you ask. Reviews are blunt.
 """
 
 # ===== Part A — Number Theory II warm-up ==============================
 
-# Q1 — GCD (Euclidean). a,b = b, a%b until b==0.  O(log min(a,b)) time, O(1) space.
+# Q1 — GCD. Euclidean algorithm. Target: O(log min(a,b)) time, O(1) space.
 def gcd(a, b):
-    # your code here
-    pass
+    while b != 0:
+        a, b = b, a % b
+    return a
 
 
-# Q2 — LCM via a*b // gcd(a,b).  Reuse gcd.
+# Q2 — LCM. Derive it from the GCD (there's a product identity).
 def lcm(a, b):
-    # your code here
-    pass
+    return a*b // gcd(a, b)
 
 
-# Q3 — First n Fibonacci numbers as a list. fib(0)->[], fib(1)->[0].
+# Q3 — First n Fibonacci numbers as a list. fib(0)->[], fib(1)->[0]. O(n)/O(1).
 def fib(n):
-    # your code here
-    pass
+    result = []
+    prev = 0
+    current = 1
+    for _ in range(0, n):
+        result.append(prev)
+        next = prev + current
+        prev = current
+        current = next
+    return result
 
 
 # ===== Part B — Arrays ================================================
 
 # Q4 — Reverse array IN PLACE (two pointers). No slicing/reversed(). O(n)/O(1).
 def reverse_arr(a):
-    # your code here
-    pass
+    if len(a) == 0:
+        return []
+    left = 0
+    right = abs(len(a) - 1)
+    while left < right:
+        a[left], a[right] = a[right], a[left]
+        left += 1
+        right -= 1
+    return a
 
 
 # Q5 — (max, min) in ONE pass. No sorted()/max()/min(). O(n)/O(1).
 def max_min(a):
-    # your code here
-    pass
+    max = min = a[0]
+    for i in a:
+        if min > i:
+            min = i
+        if max < i:
+            max = i
+    return max, min
 
 
 # Q6 — Second largest DISTINCT value, else None. One pass.
 def second_largest(a):
-    # your code here
-    pass
+    a = sorted(set(a))
+    if len(a) < 2:
+        return None
+    else:
+        return a[-2]
 
 
 # Q7 — Move all zeros to the end IN PLACE, keep order. O(n)/O(1).
 def move_zeros(a):
-    # your code here
-    pass
+    pos = 0
+    for i in a:
+        if i!=0:
+            # print("a[pos]", a[pos])
+            a[pos] = i
+            pos+=1
+            # print("pos", pos)
+    for j in range(pos, len(a)): 
+        a[j] = 0.
+    return a
 
 
 # Q8 — Missing number from a permutation of 1..n (len(a)=n-1).
-#      Use n*(n+1)//2 - sum(a)  or XOR. O(n)/O(1).
+#      Think: a sum identity, or XOR. Target O(n)/O(1).
 def missing_number(a):
-    # your code here
-    pass
+    n = len(a) + 1
+    expected_sum = n * (n + 1) // 2
+    missing = expected_sum - sum(a)
+    return missing
 
 
-# Q9 — Rotate array RIGHT by k. Handle k > len(a) with k %= len(a).
+# Q9 — Rotate array RIGHT by k. Remember k can be larger than len(a).
 def rotate(a, k):
     # your code here
     pass
@@ -87,13 +115,13 @@ def freq_count(a):
     pass
 
 
-# Q11 — Two Sum: return (i, j), i<j, with a[i]+a[j]==target. O(n) using a dict.
+# Q11 — Two Sum: return (i, j), i<j, with a[i]+a[j]==target. Hashing -> O(n).
 def two_sum(a, target):
     # your code here
     pass
 
 
-# Q12 — First element appearing exactly once, else None. dict + 2nd pass.
+# Q12 — First element appearing exactly once, else None. Hashing -> O(n).
 def first_unique(a):
     # your code here
     pass
