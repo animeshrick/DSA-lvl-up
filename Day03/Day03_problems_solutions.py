@@ -103,29 +103,48 @@ def missing_number(a):
 
 # Q9 — Rotate array RIGHT by k. Remember k can be larger than len(a).
 def rotate(a, k):
-    # your code here
-    pass
+    if len(a) < k:
+        return a
+    
+    sub_arr = a[k+1:len(a)]
+    for i in sub_arr:
+        a.remove(i)
+    a = sub_arr + a
+    return a
+# Note: rotate([1, 2, 3], 4) -> got [1, 2, 3], expected [3, 1, 2] --> not clear the example
 
 
 # ===== Part C — Hashing / Dictionaries ================================
 
 # Q10 — Frequency count -> dict {value: count}. O(n).
 def freq_count(a):
-    # your code here
-    pass
+    count_map = {}
+    for num in a:
+        if num in count_map:
+            count_map[num] += 1
+        else:
+            count_map[num] = 1
+    return count_map
 
 
 # Q11 — Two Sum: return (i, j), i<j, with a[i]+a[j]==target. Hashing -> O(n).
 def two_sum(a, target):
-    # your code here
-    pass
+    for i in range(len(a)):
+        sum = a[i] + a[i+1]
+        if sum == target:
+            return (i, i+1)
 
 
 # Q12 — First element appearing exactly once, else None. Hashing -> O(n).
 def first_unique(a):
-    # your code here
-    pass
-
+    result = freq_count(a)
+    data = None
+    for key, value in result.items():
+        # print("key:", key, "value:", value)
+        if value == 1:
+            data = key
+            break
+    return data
 
 # ===== Stretch ⭐ ======================================================
 
@@ -137,8 +156,9 @@ def is_anagram(s, t):
 
 # Q14 (⭐) — Majority element (> n//2 times, exists). Boyer-Moore -> O(n)/O(1).
 def majority(a):
-    # your code here
-    pass
+    res = freq_count(a)
+    max_key = max(res, key=res.get)
+    return max_key
 
 
 # Q15 (⭐⭐) — Longest substring without repeating chars. Sliding window. O(n).
