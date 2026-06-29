@@ -19,9 +19,10 @@ Role: senior recruiter + interview prep co-partner. Target: service/IT companies
 ## Review counts
 - `Day01/Day01_problems_solutions.py`: 3 / 5
 - `Day02/Day02_problems_solutions.py`: 1 / 5
-- `Day03/Day03_problems_solutions.py`: 0 / 5
+- `Day03/Day03_problems_solutions.py`: 1 / 5
 - `Day04/Day04_problems_solutions.py`: 0 / 5
 - `Day05/Day05_problems_solutions.py`: 0 / 5
+- `Day06/Day06_problems_solutions.py`: 0 / 5
 
 ## Scoring rubric (per day, /100)
 - **Correctness — 60.** Passes all examples + edge cases I gave. Crashes or wrong output cost heavily.
